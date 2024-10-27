@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #000b5a, #089b72);
+        }
+        .stopwatch{
+            background-image: linear-gradient(45deg, #000000b8, #000000d9), url(images/background.png);
+            padding: 35px;
+            border-radius: 16px;
+            color:white;
+        }
+        .stopwatch img{
+            width: 45px;
+        }
+        .heading{
+            text-align:center;
+        }
+        .start_btn{
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body class="box">
+
+
+    <div class="stopwatch">
+
+        <h1 class="heading" id="timer">00:00:00</h1>
+        
+        <img src="images/stop.png" onclick="stopTimer()">&nbsp;&nbsp;
+        <img src="images/start.png" class="start_btn" onclick="startTimer()">&nbsp;&nbsp;
+        <img src="images/reset.png">&nbsp;&nbsp;
+
+    </div>
+
+
+    <script>
+          const timer=document.getElementById('timer');
+          seconds=hours=minutes="0";
+          timer=null;
+          function stopwatch(){
+            seconds++;
+            if(seconds==10){
+                seconds=0;
+                minutes++;
+                if(minutes == 10){
+                    minutes=0;
+                    hours++;
+                }
+            }
+
+            let h = hours < 10 ? '0' + hours : hours;
+            let m = minutes < 10 ? '0' + minutes : minutes;
+            let s = seconds < 10 ? '0' + seconds : seconds;
+
+            timer.innerHTML=h+":"+m+":"+s;
+          }
+
+                    
+          function startTimer(){
+            if(timer !== null){
+                clearInterval(timer);
+              
+            }
+            timer = setInterval(stopwatch,1000);
+          }
+
+          function stopTimer(){
+            clearInterval(timer);
+          }
+          
+    </script>
+
+</body>
+
+</html>
